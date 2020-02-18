@@ -81,22 +81,22 @@
 
         if (bulk.length) {
           if (add == ' ') add = '&nbsp;';
-          add = `<${settings.htmlTag} class="${bulk.join(' ')}">${add}</${settings.htmlTag}>`;
+          add = `<${settings.htmlTag || 'span'} class="${bulk.join(' ')}">${add}</${settings.htmlTag || 'span'}>`;
         }
 
         if (open.length) {
           for (let tag of open)
-            add = `<${settings.htmlTag} class="${tag}">${add}`;
+            add = `<${settings.htmlTag || 'span'} class="${tag}">${add}`;
         }
 
         if (close) {
-          add += `</${settings.htmlTag}>`.repeat(close);
+          add += `</${settings.htmlTag || 'span'}>`.repeat(close);
         }
 
         out += add;
       }
 
-      out = settings.prefix + out + settings.suffix;
+      out = (settings.prefix || '') + out + (settings.suffix || '');
     }
 
     return out || string;
