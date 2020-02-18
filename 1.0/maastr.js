@@ -19,8 +19,10 @@
   };
 
   /**
-   * Parses strings with the ingame format and renders them in HTML
+   * Parses strings with the provided tokens object or the default tokens if none are specified
    * @param {string} string The string to parse
+   * @param {{[key: string]: string}?} tokens The tokens
+   * @param {{[key: string]: string}?} settings The settings
    */
   this.maastr.parse = function(string, tokens = maastr.default.tokens, settings = maastr.default.settings) {
     let ntokens = {};
