@@ -22,7 +22,7 @@ You can define your own tokens and parse your custom string formatting, ready to
 
 For using it in the browser, either use Github as your CDN and import it as the following:
 ```html
-<script src="./maastr.js"></script>
+<script src="https://raw.githubusercontent.com/Maanex/maastr/master/latest/maastr.min.js"></script>
 ```
 
 Or choose your version above and download the required files.
@@ -80,4 +80,7 @@ maastr.default.settings = { ... }
 ---
 
 You've reached the bottom.
-[Follow me on Twitter](https://twitter.com/Maanex_) and thanks to [Egor](https://twitter.com/egordorichev) for asking me to turn this into a standalone lib.
+
+[Find me on Twitter](https://twitter.com/Maanex_)
+
+And thanks to [Egor](https://twitter.com/egordorichev) for asking me to turn this into a standalone lib.
