@@ -77,10 +77,85 @@ Just as you can change the default tokens, you can also change the default setti
 maastr.default.settings = { ... }
 ```
 
+### Single Character Wrapping
+
+Sometimes you want to style each character individually or want to target single letters in javascript. Therefore you can replace the tagname in your token list with an array. The first entry has to be the tag name, the second one needs to be set to true in order to let maastr wrap each character into it's own html element.
+
+Example:
+```js
+let tokens = {
+    '$': [ 'dollar', true ],
+    '%': [ 'percent', false ], // same as '%': 'percent',
+    '+': [ 'plus', true ]
+}
+
+// Note: The example return values below are formatted to be better understandable. The actual output is minified!
+
+maastr.parse('$example$', tokens);
+/* returns:
+ * "<span class="dollar">e</span>
+ *  <span class="dollar">x</span>
+ *  <span class="dollar">a</span>
+ *  <span class="dollar">m</span>
+ *  <span class="dollar">p</span>
+ *  <span class="dollar">l</span>
+ *  <span class="dollar">e</span>"
+ */
+
+maastr.parse('% more $examples$%', tokens);
+/* returns:
+ * "<span class="percent">
+ *    more
+ *    <span class="dollar">e</span>
+ *    <span class="dollar">x</span>
+ *    <span class="dollar">a</span>
+ *    <span class="dollar">m</span>
+ *    <span class="dollar">p</span>
+ *    <span class="dollar">l</span>
+ *    <span class="dollar">e</span>
+ *    <span class="dollar">s</span>
+ *  </span>"
+ */
+
+maastr.parse('+complex$example$+', tokens);
+/* returns:
+ * "<span class="plus">c</span>
+ *  <span class="plus">o</span>
+ *  <span class="plus">m</span>
+ *  <span class="plus">p</span>
+ *  <span class="plus">l</span>
+ *  <span class="plus">e</span>
+ *  <span class="plus">x</span>
+ *  <span class="dollar plus">e</span>
+ *  <span class="dollar plus">x</span>
+ *  <span class="dollar plus">a</span>
+ *  <span class="dollar plus">m</span>
+ *  <span class="dollar plus">p</span>
+ *  <span class="dollar plus">l</span>
+ *  <span class="dollar plus">e</span>"
+ */
+
+maastr.parse('+with space+', tokens);
+/* since an empty tag cannot be styled, each space in a single-character-wrapping will be replaced by the No-Break-Space &nbsp;
+ * returns:
+ * "<span class="plus">w</span>
+ *  <span class="plus">i</span>
+ *  <span class="plus">t</span>
+ *  <span class="plus">h</span>
+ *  <span class="plus">&nbsp;</span>
+ *  <span class="plus">s</span>
+ *  <span class="plus">p</span>
+ *  <span class="plus">a</span>
+ *  <span class="plus">c</span>
+ *  <span class="plus">e</span>"
+ */ 
+
+```
+
 ---
 
 You've reached the bottom.
 
 [Find me on Twitter](https://twitter.com/Maanex_)
 
-And thanks to [Egor](https://twitter.com/egordorichev) for asking me to turn this into a standalone lib.
+And thanks to [Egor](https://twitter.com/egordorichev) for making me turn this into a standalone lib.
